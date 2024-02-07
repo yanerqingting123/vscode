@@ -56,15 +56,15 @@ onBeforeMount(() => {
       path: '/index'
     },
     {
-      title: '新闻中心',
+      title: '课程推荐',
       path: '/news'
     },
     {
-      title: '产品与服务',
+      title: '课程助手',
       path: '/product'
     },
     {
-      title: '人才招聘',
+      title: '联系我们',
       path: '/job'
     },
     // {
