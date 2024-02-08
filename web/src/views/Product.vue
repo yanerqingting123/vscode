@@ -1,31 +1,17 @@
 <template>
-  <div>
+  <div class="container">
     <AwHeader class="product_header"></AwHeader>
-    <div class="product">
-      <ul class="product-fullpage-indicator">
-        <li v-for="(item, index) in products" :key="item.id" class="product-fullpage-indicator-item"
-          :class="{ active: activeIndex === index }" @click="activeIndex = index">
-          <img :src="item.product_logo" alt="产品 logo" />
-        </li>
-      </ul>
-      <transition :duration="duration" :name="transitionName">
-        <!-- ... the buttons ... -->
-        <div :key="activeIndex" class="view-wrapper" v-if="!loading" :style="`backgroundImage:url(${item.cover_img})`">
-          <div class="content">
-            <div class="logo">
-              <img :src="item.product_logo" width="100%" height="100%" alt="" />
-            </div>
-            <h2>{{ item.product_title }}</h2>
-            <div class="description">
-              <p>{{ item.product_desc }}</p>
-              <p>
-                {{ item.product_sub_desc }}
-              </p>
-              <p>更多信息，请访问：</p><a :href="item.link" target="_blank">{{ item.product_link }}</a>
-            </div>
-          </div>
-        </div>
-      </transition>
+    <div class="main-container">
+      <div class="sidebar">
+      <!-- 侧边栏内容，可以根据需要添加具体内容 -->
+      <!-- 例如，可以在这里放置链接、图标等 -->
+    </div>
+
+    <!-- 主要内容容器 -->
+    <div class="main-content">
+      <!-- 主要内容，包括原有的产品展示部分 -->
+      <!-- ... -->
+    </div>
     </div>
   </div>
 </template>
@@ -117,96 +103,32 @@ onBeforeRouteLeave((to, from, next) => {
 })
 </script>
 <style lang = "less" scoped>
-.product_header {
-  background-color: rgba(255, 255, 255, .7);
-  backdrop-filter: blur(10px);
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* 设置高度为视窗高度，让布局占据整个屏幕 */
+  background-color: #f2f8fa;
 }
 
-.product {
-  position: fixed;
-  z-index: -1;
-  top: 60px;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  min-height: 600px;
-  min-width: 700px;
+.main-container {
+  display: flex;
+}
 
-  &-fullpage-indicator {
-    position: absolute;
-    z-index: 333;
-    right: 50px;
-    top: 50%;
-    transform: translateY(-50%);
+.sidebar {
+  /* 样式定义，例如宽度、背景色等 */
+  width: 300px;
+  height: 729px;
+  background: linear-gradient(to bottom, #f5f3f9, #ceebff);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  /* 其他样式属性根据需求添加 */
+}
 
-    &-item {
-      margin: 22px 0;
-      width: 5vh;
-      height: 5vh;
-      min-height: 30px;
-      min-width: 30px;
-      cursor: pointer;
-      transition: all 0.3s;
-      border-radius: 50%;
-      overflow: hidden;
-
-      &:hover,
-      &.active {
-        transform: scale(1.3);
-
-        box-shadow: 0 0 14px 0
-          /*@box-shadow-dark-color*/
-        ;
-      }
-
-      img {
-        width: 100%;
-        height: 100%;
-      }
-    }
-  }
-
-  .view-wrapper {
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    position: absolute;
-    height: 100vh;
-    width: 100%;
-    // padding-top: 100px;
-    padding-left: 100px;
-
-    .content {
-      width: 300px;
-      transform: translateY(-60%);
-      position: absolute;
-      top: 50%;
-
-      // text-align: center;
-      .logo {
-        width: 80px;
-        height: 80px;
-      }
-
-      h2 {
-        margin-top: 32px;
-        line-height: 32px;
-        font-size: 28px;
-        color: #1f2329;
-      }
-
-      .description {
-        margin-top: 24px;
-        line-height: 26px;
-        font-size: 14px;
-        color: #1f2329;
-
-        p+p {
-          margin-top: 16px;
-        }
-      }
-    }
-  }
+.main-content {
+  /* 样式定义，例如设置右边边距留出侧边栏空间 */
+  flex: 1; /* 使用 flex 属性，使主要内容占据剩余空间 */
+  padding: 20px; /* 为主要内容添加一些内边距 */
+  background-color: #fefeff;
+  /* 其他样式属性根据需求添加 */
 }
 
 .move-up-leave-active {
@@ -218,22 +140,6 @@ onBeforeRouteLeave((to, from, next) => {
   transform: scale(1);
 }
 
-.move-up-enter-active {
-  -webkit-animation: inUp .7s cubic-bezier(.66, 0, .34, 1);
-  animation: inUp .7s cubic-bezier(.66, 0, .34, 1);
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
-
-.move-down-leave-active {
-  -webkit-animation: outDown .7s cubic-bezier(.66, 0, .34, 1);
-  animation: outDown .7s cubic-bezier(.66, 0, .34, 1);
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -ms-transform: translateY(0);
-  transform: translateY(0);
-}
-
 .move-down-enter-active {
   -webkit-animation: inDown .7s cubic-bezier(.66, 0, .34, 1);
   animation: inDown .7s cubic-bezier(.66, 0, .34, 1);
@@ -241,20 +147,6 @@ onBeforeRouteLeave((to, from, next) => {
   animation-fill-mode: forwards;
   -ms-transform: scale(.6);
   transform: scale(.6);
-}
-
-.move-up-enter {
-  animation: inUp .7s cubic-bezier(.66, 0, .34, 1);
-  animation-fill-mode: forwards;
-}
-
-.move-down-leave-to {
-  -webkit-animation: outDown .7s cubic-bezier(.66, 0, .34, 1);
-  animation: outDown .7s cubic-bezier(.66, 0, .34, 1);
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-  -ms-transform: translateY(0);
-  transform: translateY(0);
 }
 
 .move-up-enter-active,

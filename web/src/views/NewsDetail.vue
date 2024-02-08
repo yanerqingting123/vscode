@@ -25,15 +25,15 @@
 import AwHeader from '@/components/public/Header'
 import AwFooter from '@/components/public/Footer'
 import HotNews from '@/components/HotNews'
-import { computed, onMounted, reactive, ref } from "vue";
-import { onBeforeRouteLeave, useRoute, useRouter } from "vue-router";
-import { useStore } from "vuex";
-import { getNewsDetailsApi } from "@/apis/news";
+import { computed, onMounted, reactive, ref } from 'vue'
+import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router'
+import { useStore } from 'vuex'
+import { getNewsDetailsApi } from '@/apis/news'
 
-const route = useRoute();
-const router = useRouter();
+const route = useRoute()
+const router = useRouter()
 
-const store = useStore();
+const store = useStore()
 
 const news_detail = ref(
   {
@@ -42,13 +42,13 @@ const news_detail = ref(
     content: '',
     type: ''
   }
-);
+)
 
 const news_path = computed(() => route.params?.id ?? '')
 onMounted(() => {
   store.commit('setShadowActive', {
     headerLogoShow: false
-  });
+  })
 
   store.commit('setShadowActive', {
     headerShadowActive: true
@@ -61,18 +61,19 @@ onMounted(() => {
   store.commit('setHeaderShow', {
     headerShow: false
   })
-  getNewsDetails();
+  getNewsDetails()
 })
 
-//获取新闻详情
-async function getNewsDetails() {
+// 获取新闻详情
+async function getNewsDetails () {
   const { data: res } = await getNewsDetailsApi(news_path.value)
   if (res.status !== 200) {
     console.log(res)
   } else {
     // this.$message.success('获取成功')
-    news_detail.value= {
-      title: res.data.news_detail.news_title, publish_time: res.data.news_detail.publish_time,
+    news_detail.value = {
+      title: res.data.news_detail.news_title,
+      publish_time: res.data.news_detail.publish_time,
       content: res.data.news_detail.news_content,
       type: res.data.news_detail.aw_news_type.type_name
     }

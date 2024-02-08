@@ -21,6 +21,7 @@ type ImgItem = {
   imgUrl: string;
 }
 
+// eslint-disable-next-line no-undef
 const props = defineProps({
   bannerHeight: {
     type: Number,
