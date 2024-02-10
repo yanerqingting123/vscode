@@ -5,14 +5,14 @@
       <div class="sidebar">
       <!-- 侧边栏内容，可以根据需要添加具体内容 -->
       <!-- 例如，可以在这里放置链接、图标等 -->
+        <button class="new-dialog">新建对话</button>
+        <div class="search-box">
+          <input type="text" placeholder="搜索历史记录">
+        </div>
+      </div>
+
     </div>
 
-    <!-- 主要内容容器 -->
-    <div class="main-content">
-      <!-- 主要内容，包括原有的产品展示部分 -->
-      <!-- ... -->
-    </div>
-    </div>
   </div>
 </template>
 <script lang="ts" setup>
@@ -21,6 +21,7 @@ import mainStore from '@/store'
 import { computed, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
 import { getProductLit } from '@/apis/product'
 import { onBeforeRouteLeave } from 'vue-router'
+import ChatDialog from '@/components/ChatDialog.vue'
 
 const loading = ref(false)
 const products = ref<Record<string, string>[]>([])
@@ -30,105 +31,74 @@ const scrolling = ref(false)
 const duration = ref(1000)
 
 const item = computed(() => products.value[activeIndex.value] || {})
-
-watch(() => activeIndex.value, (newIndex, oldIndex) => {
-  if (scrolling.value) {
-    return
-  }
-  transitionName.value = newIndex < oldIndex ? 'move-down' : 'move-up'
-})
-
-// 挂载前
-onBeforeMount(async () => {
-  mainStore.commit('setHeaderLogo', {
-    headerLogoShow: false
-  })
-  mainStore.commit('setShadowActive', {
-    headerShadowActive: false
-  })
-  mainStore.commit('setNavDarkActive', {
-    navDarkActive: true
-  })
-  mainStore.commit('setHeaderShow', {
-    headerShow: false
-  })
-  loading.value = true
-  const { data: res } = await getProductLit()
-  if (res.status === 200) {
-    products.value = res.data.list
-    loading.value = false
-  }
-})
-// 挂载完成
-onMounted(() => {
-  window.addEventListener('mousewheel', mousewheelHandler)
-  window.addEventListener('DOMMouseScroll', mousewheelHandler)
-})
-// 卸载后
-onUnmounted(() => {
-  window.removeEventListener('mousewheel', mousewheelHandler)
-  window.removeEventListener('DOMMouseScroll', mousewheelHandler)
-})
-function mousewheelHandler (e: Event) {
-  if (scrolling.value) {
-    return
-  }
-  scrolling.value = true
-  // @ts-ignore
-  if (e.wheelDelta > 0 || e.detail < 0) {
-    transitionName.value = 'move-down'
-    activeIndex.value =
-      activeIndex.value === 0
-        ? products.value.length - 1
-        : activeIndex.value - 1
-  } else {
-    transitionName.value = 'move-up'
-    activeIndex.value = (activeIndex.value + 1) % products.value.length
-  }
-  setTimeout(() => {
-    scrolling.value = false
-  }, duration.value)
-}
-
-onBeforeRouteLeave((to, from, next) => {
-  if (from.name === 'Product') {
-    mainStore.commit('setNavDarkActive', {
-      navDarkActive: false
-    })
-    mainStore.commit('setHeaderLogo', {
-      headerLogoShow: true
-    })
-    next()
-  }
-})
 </script>
 <style lang = "less" scoped>
-.container{
+.container {
   display: flex;
   flex-direction: column;
-  height: 100vh; /* 设置高度为视窗高度，让布局占据整个屏幕 */
-  background-color: #f2f8fa;
+  height: 100vh;
+  /* 设置高度为视窗高度，让布局占据整个屏幕 */
+  background-color: #dbe8ec;
 }
 
 .main-container {
   display: flex;
+  overflow: hidden;
+  background-color: #f2f9fd;
 }
 
 .sidebar {
   /* 样式定义，例如宽度、背景色等 */
+  position: relative;
   width: 300px;
   height: 729px;
   background: linear-gradient(to bottom, #f5f3f9, #ceebff);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0 10px rgba(0, 0, 0, 0.3);
   /* 其他样式属性根据需求添加 */
 }
 
-.main-content {
-  /* 样式定义，例如设置右边边距留出侧边栏空间 */
-  flex: 1; /* 使用 flex 属性，使主要内容占据剩余空间 */
-  padding: 20px; /* 为主要内容添加一些内边距 */
-  background-color: #fefeff;
-  /* 其他样式属性根据需求添加 */
+.new-dialog {
+  margin-top: 80px;
+  margin-left: 40px;
+  color: #1534fa;
+  border: 2px solid #b0cbdd;
+  /* 设置边框宽度和颜色 */
+  border-radius: 10px;
+  padding: 10px 20px;
+  /* 设置按钮内边距 */
+  font-size: 16px;
+  /* 设置字体大小 */
+  cursor: pointer;
+  /* 设置鼠标悬停样式 */
+}
+
+.search-box {
+  margin-top: 32px;
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px; /* 调整间距 */
+}
+
+input {
+  width: 80%;
+  padding: 8px;
+  margin-right: 5px;
+}
+
+input::placeholder {
+  color: #aaa;
+  /* 默认颜色，可以根据需要调整 */
+}
+
+input:focus {
+  color: #020202;
+  /* 输入时的字体颜色 */
+}
+
+.search-icon {
+  font-size: 20px;
+  margin-right: 8px;
 }
 
 .move-up-leave-active {
@@ -265,5 +235,4 @@ onBeforeRouteLeave((to, from, next) => {
     transform: translateZ(0);
     visibility: visible;
   }
-}
-</style>
+}</style>

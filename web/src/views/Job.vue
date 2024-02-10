@@ -2,10 +2,11 @@
   <div class="job">
     <AwHeader class="job_header" ref="jobRef" />
     <div class="box">
-      <div class="banner">和优秀的人，做有挑战的事</div>
+
+      <div class="lianxiwomen"><span>&#x260E;</span> 联系我们</div>
       <!-- 搜索 -->
       <div class="search-wrapper" :class="{ fixedTop: searchBarFixedTop }">
-        <el-input :class="[{ medium: searchBarFixedTop }, 'small']" placeholder="搜索职位" @change="search"
+        <el-input :class="[{ medium: searchBarFixedTop }, 'small']" placeholder="输入您的问题..."
           v-model="searchKeyword">
           <template #prefix>
             <el-icon>
@@ -13,53 +14,10 @@
             </el-icon>
           </template>
         </el-input>
-        <el-button :class="[{ medium: searchBarFixedTop }, 'small']" type="primary" round @click="search">搜索
+        <el-button :class="[{ medium: searchBarFixedTop }, 'small']" type="text" round>搜索
         </el-button>
       </div>
-      <div class="main">
-        <div class="aside-filter">
-          <div class="aside-header">
-            <span>筛选</span>
-            <span :class="{ clearable }" class="clear" @click="clearFilter">清空</span>
-          </div>
-          <div class="job-category job-filter-block">
-            <div class="title">职位类别</div>
-            <el-tree ref="jobCategory" :data="jobCategories" :props="jobCategoryProps" node-key="id" check-on-click-node
-              @check="jobCategoryChange" show-checkbox>
-            </el-tree>
-          </div>
-          <div class="city-category job-filter-block">
-            <div class="title">城市</div>
-            <checkbox-and-dropdown @changed="cityChange" :data="jobCities" :cityList="location_code_list">{{
-              location_code_list
-            }}
-            </checkbox-and-dropdown>
-          </div>
-        </div>
-        <div class="content">
-          <h2 class="content-title" v-show="results.total > 0">
-            开启新的工作 ({{ results.total }})
-          </h2>
-          <h2 class="content-title" v-show="!(results.total > 0)">开启新的工作 (0)</h2>
-          <ul class="content-list">
-            <li class="content-item is-hover-shadow" v-for="item in results.job_post_list" :key="item.id">
-              <router-link :to="`/job/${item.id}`">
-                <h3 class="title">{{ item.title }}</h3>
-                <div class="subTitle">
-                  <span class="city">{{ item.aw_city_info.name }}</span>&nbsp;|
-                  <span class="job_category">{{ item.aw_job_category.name }}</span>
-                </div>
-                <p class="desc">{{ item.description }}</p>
-              </router-link>
-            </li>
-          </ul>
-          <div v-show="!loading" class="pagination-wrapper">
-            <el-pagination layout="prev, pager, next" v-model:current-page="currentPage" :total="results.total"
-              :hide-on-single-page="singlePage">
-            </el-pagination>
-          </div>
-        </div>
-      </div>
+      <div class="lianxifangshi">联系方式 —— tel : xxxxxxxxxxx          email : xxxxxxxx     address : 中南财经政法大学</div>
     </div>
     <AwFooter />
   </div>
@@ -113,14 +71,6 @@ const queryFilter = computed(() => {
     currentPage: currentPage.value
   }
 })
-const clearable = computed(
-  () => job_category_id_list.value.length !== 0 || location_code_list.value.length != 0
-)
-
-onBeforeMount(() => {
-  getJobConfigRequest()
-  getJobList()
-})
 
 onMounted(() => {
   mainStore.commit('setHeaderLogo', {
@@ -158,78 +108,28 @@ function scrollHandle () {
   searchBarFixedTop.value = scrollTop.value >= 430
 }
 
-function search () {
-  getJobList()
-}
-
-function clearFilter() {
-  jobCategory.value.getCheckedKeys().forEach((v:number, i:number) =>
-    jobCategory.value.setChecked(v,false,true)
-  );
-  job_category_id_list.value = []
-  location_code_list.value = []
-  getJobList()
-}
-
-// 请求职位列表
-async function getJobList () {
-  loading.value = true
-  const { data: res } = await getJobListApi({
-    currentPage: currentPage.value,
-    job_category_id_list: job_category_id_list.value,
-    pageSize: pageSize.value,
-    keyword: searchKeyword.value,
-    location_code_list: location_code_list.value
-  })
-  if (res.status === 200) {
-    results.value = res.data
-    loading.value = false
-    if ((results.value.total as number) <= (results.value.limit as number)) {
-      singlePage.value = true
-    }
-  }
-}
-
 // 请求筛选条件
-async function getJobConfigRequest () {
-  const { data: res } = await getJobFilter()
-  if (res.status === 200) {
-    jobCities.value = res.data.city_list
-    jobCategories.value = res.data.job_type_list
-  }
-}
 
-function jobCategoryChange() {
-  job_category_id_list.value = jobCategory.value.getCheckedKeys()
-  getJobList()
-}
-
-function cityChange (value: any) {
-  location_code_list.value = value
-  getJobList()
-}
-
-onBeforeRouteLeave((to, from, next) => {
-  if (from.name === 'Product') {
-    mainStore.commit('setNavDarkActive', {
-      navDarkActive: false
-    })
-    mainStore.commit('setHeaderLogo', {
-      headerLogoShow: true
-    })
-  }
-  next()
-})
 </script>
 <style lang="less" scoped>
-.job_header {
-  background-color: rgba(255, 255, 255, 1);
-  backdrop-filter: blur(10px);
+.lianxifangshi{
+  margin-left: 400px;
+  margin-top: 150px;
+}
+
+.lianxiwomen{
+  // color: #050f17; /* 设置字体颜色，可以根据需要调整颜色值 */
+  font-weight: bold;
+  font-size: 36px; /* 设置字体大小 */
+  text-align: center; /* 让文字居中 */
+  margin-bottom: 100px;
+  letter-spacing: 20px; /* 设置字体间距，可以根据需要调整值 */
+  // margin-top: 100px; /* 调整上方间距，根据需要调整 */
 }
 
 .box {
-  padding-top: 60px;
-  min-height: 860px;
+  padding-top: 100px;
+  min-height: 380px;
   width: 100%;
 
   * {
@@ -237,12 +137,11 @@ onBeforeRouteLeave((to, from, next) => {
   }
 
   .banner {
-    height: 400px;
+    height: 200px;
     line-height: 400px;
-    color: #fff;
+    color: #0f0f0f;
     width: 100%;
     min-width: @main-width;
-    background-image: url("//sf1-ttcdn-tos.pstatp.com/obj/ttfe/ATSX/mainland/joblistbanner2x.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
