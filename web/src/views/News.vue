@@ -3,7 +3,10 @@
     <AwHeader class="news_header" ref="headRef"></AwHeader>
     <div class="box">
       <div class="news-banner">
-        <el-autocomplete
+        <div class="banner-left">
+        </div>
+        <div class="banner-right">
+          <el-autocomplete
           class="search-input"
           popper-class="my-autocomplete"
           highlight-first-item
@@ -14,21 +17,54 @@
           @blur="autocompleteFlag = false"
           @clear="searchHandle"
           :fetch-suggestions="querySearchAsync"
-          placeholder="请输入新闻关键词"
+          placeholder="检索课程、直播、学习资料"
           :trigger-on-focus="false"
         >
-          <template #prefix>
-            <el-icon>
-              <Search />
-            </el-icon>
-          </template>
-          <template #default="{ item }">
-            <router-link :to="'/news/'+item.news_path" target="_blank">
-              <div class="name" v-html="item.news_title"></div>
-              <span class="desc" v-html="item.news_desc"></span>
-            </router-link>
-          </template>
-        </el-autocomplete>
+      </el-autocomplete>
+      <p>
+        热门搜索
+      </p>
+        </div>
+      </div>
+      <div class="news-body">
+        <div class="banner-1">
+            <div class="image-container1">
+              <router-link to="../views/NewsDetail.vue"></router-link>
+            </div>
+          <div class="text-container">
+            <h3>综合素质提升课：500</h3>
+            <p>课程介绍：教育部门可使用平台内综合素质评价方案，要求
+              各级学校评分建档，建立学生综合素质评价档案库</p>
+          </div>
+        </div>
+        <div class="banner-2">
+          <div class="image-container2">
+          </div>
+          <div class="text-container">
+            <h3>综合素质提升课：500</h3>
+            <p>课程介绍：教育部门可使用平台内综合素质评价方案，要求
+              各级学校评分建档，建立学生综合素质评价档案库
+            </p>
+          </div>
+        </div>
+        <div class="banner-3">
+          <div class="image-container3">
+          </div>
+          <div class="text-container">
+            <h3>在线巡课评课：800</h3>
+            <p>可组织辖区内学校老师网授公开课并开展集体在线巡课，对授
+              课进行听评课，集中力量提示教研教学水平</p>
+          </div>
+        </div>
+        <div class="banner-4">
+          <div class="image-container4">
+          </div>
+          <div class="text-container">
+            <h3>在线巡课评课：800</h3>
+            <p>可组织辖区内学校老师网授公开课并开展集体在线巡课，对授
+              课进行听评课，集中力量提示教研教学水平</p>
+          </div>
+        </div>
       </div>
     </div>
     <AwFooter></AwFooter>
@@ -37,33 +73,11 @@
 <script lang="ts" setup>
 import AwHeader from '@/components/public/Header.vue'
 import AwFooter from '@/components/public/Footer.vue'
-import HotNews from '@/components/HotNews.vue'
-import NewsList from '@/components/NewsList.vue'
 import { Search } from '@element-plus/icons-vue'
 import { onBeforeMount, onMounted, ref } from 'vue'
 import mainStore from '@/store'
 import { onBeforeRouteLeave } from 'vue-router'
-import { searchNewsList, getNewsList, getRecomNewsApi } from '@/apis/news'
-type NewsItem = {
-  id: string;
-  name: string;
-};
-const headRef = ref()
-const newsTabs = ref<NewsItem[]>([])
-const newsItems = ref<Record<any, any>>({})
-const pageInfo = ref<{
-  activeName: string;
-  pagenum: number;
-  pagesize: number;
-  selectDate: '';
-}>({
-  activeName: '1',
-  // 当前页码
-  pagenum: 1,
-  // 当前每页显示多少条数据
-  pagesize: 10,
-  selectDate: ''
-})
+
 const singlePage = ref(false)
 const recomNews = ref<Array<any>>([])
 const selectDate = ref('')
@@ -73,75 +87,7 @@ const autocomplete = ref()
 const autocompleteFlag = ref(false)
 const hotNews = ref<Array<any>>([])
 const searchNews = ref<any>()
-onBeforeMount(() => {
 
-  getNewsItems()
-  getRecomNews()
-})
-onMounted(() => {
-  mainStore.commit('setHeaderLogo', {
-    headerLogoShow: false
-  })
-  mainStore.commit('setShadowActive', {
-    headerShadowActive: false
-  })
-  mainStore.commit('setNavDarkActive', {
-    navDarkActive: true
-  })
-  mainStore.commit('setHeaderShow', {
-    headerShow: false
-  })
-})
-
-async function querySearchAsync (queryString: string, cb: (list: Array<any>) => void) {
-  searchList.value = []
-  const { data: res } = await searchNewsList(queryString)
-  searchList.value = res?.data?.list ?? []
-  const newHtml = `<span style="color: #3370ff">${queryString}</span>`
-  searchList.value.forEach((item) => {
-    item.news_title = item.news_title.replace(queryString, newHtml)
-    item.news_desc = item.news_desc.replace(queryString, newHtml)
-    // item.news_desc = item.news_desc.replace(queryString, newHtml)
-  })
-  clearTimeout(timeout.value)
-  timeout.value = setTimeout(() => {
-    cb(searchList.value)
-  }, 1000 * Math.random())
-}
-
-/**
- * 选项卡切换
- * @param tab
- * @param event
- */
-function handleClick (tab: number | string, event: Event) {
-  getNewsItems()
-}
-
-async function getNewsItems () {
-  const { data: res } = await getNewsList(pageInfo.value)
-  if (res.status !== 200) {
-    newsItems.value = {}
-  } else {
-    newsItems.value = res.data
-    if (newsItems.value.total <= newsItems.value.limit) {
-      singlePage.value = true
-    }
-  }
-}
-
-function searchByDate (data: any) {
-  getNewsItems()
-}
-
-async function getRecomNews () {
-  const { data: res } = await getRecomNewsApi()
-  if (res.status !== 200) {
-    hotNews.value = []
-  } else {
-    recomNews.value = res.data.list
-  }
-}
 
 onBeforeRouteLeave((to, from, next) => {
   if (from.name === 'News') {
@@ -154,7 +100,7 @@ onBeforeRouteLeave((to, from, next) => {
   }
   next()
 })
-</script>
+</script >
 <style lang="less" scoped>
 @hover_color: #3370ff;
 
@@ -177,13 +123,28 @@ onBeforeRouteLeave((to, from, next) => {
 
 .news-banner {
   width: 100%;
-  height: 690px;
-  background-size: cover;
+  height: 200px;
   text-align: center;
-  padding-top: 70px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
+}
+
+.banner-left{
+  width: 60%;
+  height: 100%;
+  background: url(../assets/img/banner1.jpg) 100% no-repeat;
+  background-size: cover;
+  margin-left: 5%;
+}
+
+.banner-right{
+  width: 40%;
+  height: 100%;
 
   :deep(.el-autocomplete) {
-    width: 46%;
+    width: 80%;
+    float:center;
     .el-input__wrapper {
       border-radius: 30px;
     }
@@ -201,62 +162,120 @@ onBeforeRouteLeave((to, from, next) => {
       font-size: 16px;
     }
   }
+
+  p{
+    color: gray;
+    font-size: 18px;
+    text-align: left;
+    margin-left: 10%;
+    margin-top: 25px;
+}
 }
 
 
-:deep(.el-tabs__nav-wrap::after) {
-  content: none;
+
+.news-body {
+  width: 100%;
+  height: 400px;
+  text-align: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  display: flex;
 }
 
-.box-card {
-  width: 480px;
+.banner-1 {
+  width: 20%;
+  height: 400px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 5%;
+  margin-right: 5%;
+  flex: 1;
+  }
+
+.banner-2 {
+  width: 20%;
+  height: 400px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-right: 5%;
+  flex: 1;
 }
+.banner-3 {
+  width: 20%;
+  height: 400px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-right: 5%;
+  flex: 1;
+
+}
+.banner-4 {
+  width: 20%;
+  height: 400px;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-right: 5%;
+  flex: 1;
+}
+
+.image-container1 {
+  height: 60%; /* 上面图片容器占据60%的高度 */
+  background-image: url('../assets/img/news/class1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.image-container2 {
+  height: 60%; /* 上面图片容器占据60%的高度 */
+  background-image: url('../assets/img/news/class2.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.image-container3 {
+  height: 60%; /* 上面图片容器占据60%的高度 */
+  background-image: url('../assets/img/news/class3.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.image-container4 {
+  height: 60%; /* 上面图片容器占据60%的高度 */
+  background-image: url('../assets/img/news/class4.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+
+}
+
+.text-container {
+  height: 40%; /* 下面文字容器占据40%的高度 */
+
+
+  h3{
+   color:#3370ff;
+    font-size: 18px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+  p{
+    color: gray;
+    text-align: left;
+    margin-top: 15px;
+}
+}
+
+
 </style>
 
 <style lang="less">
 @hover_color: #3370ff;
-
-.my-autocomplete {
-  width: 46%;
-  left: 50% !important;
-  transform: translateX(-50%);
-  li {
-    line-height: normal;
-    padding: 7px;
-
-    .name {
-      text-overflow: ellipsis;
-      overflow: hidden;
-    }
-
-    .desc {
-      font-size: 12px;
-      color: #b4b4b4;
-    }
-
-    &.highlighted {
-      background: #edf6ff !important;
-    }
-
-    .highlighted .addr {
-      color: #ddd;
-    }
-  }
-
-  a {
-    color: rgba(0, 0, 0, 1);
-    //transition: color .3s;
-    display: block;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
-
-  a:hover {
-    color: @hover_color;
-  }
-}
-
-.el-autocomplete-suggestion li:hover {
-  background-color: #edf6ff !important;
-}
 </style>
