@@ -29,10 +29,9 @@
       <div class="news-body">
         <div class="banner-1">
             <div class="image-container1">
-              <router-link to="../views/NewsDetail.vue"></router-link>
             </div>
           <div class="text-container">
-            <h3>综合素质提升课：500</h3>
+            <h3><router-link to="/newsDetail" >综合素质提升课：500</router-link></h3>
             <p>课程介绍：教育部门可使用平台内综合素质评价方案，要求
               各级学校评分建档，建立学生综合素质评价档案库</p>
           </div>
@@ -73,33 +72,75 @@
 <script lang="ts" setup>
 import AwHeader from '@/components/public/Header.vue'
 import AwFooter from '@/components/public/Footer.vue'
-import { Search } from '@element-plus/icons-vue'
-import { onBeforeMount, onMounted, ref } from 'vue'
+import CheckboxAndDropdown from '@/components/CheckboxAndDropdown.vue'
+
 import mainStore from '@/store'
 import { onBeforeRouteLeave } from 'vue-router'
+import { computed, onBeforeMount, onMounted, onUnmounted, ref, reactive } from 'vue'
+import { getJobListApi, getJobFilter } from '@/apis/job'
 
+const jobCities = ref([])
+const job_category_id_list = ref([])
+const location_code_list = ref([])
+const searchBarFixedTop = ref(false)
+const searchKeyword = ref('')
+const currentPage = ref(1)
+const pageSize = ref(10)
+const loading = ref(false)
+const locationCodeProps = ref({
+  label: 'name'
+})
 const singlePage = ref(false)
-const recomNews = ref<Array<any>>([])
-const selectDate = ref('')
-const searchList = ref<Array<any>>([])
-const timeout = ref()
-const autocomplete = ref()
-const autocompleteFlag = ref(false)
-const hotNews = ref<Array<any>>([])
-const searchNews = ref<any>()
+const checked = ref(false)
+const scrollTop = ref(0)
+const oldScrollTop = ref(0)
 
+const queryFilter = computed(() => {
+  return {
+    job_category_id_list: job_category_id_list.value,
+    location_code_list: location_code_list.value,
+    keyword: searchKeyword.value,
+    pagesize: pageSize.value,
+    currentPage: currentPage.value
+  }
+})
 
-onBeforeRouteLeave((to, from, next) => {
-  if (from.name === 'News') {
-    mainStore.commit('setNavDarkActive', {
-      navDarkActive: false
+onMounted(() => {
+  mainStore.commit('setHeaderLogo', {
+    headerLogoShow: false
+  })
+  mainStore.commit('setShadowActive', {
+    headerShadowActive: false
+  })
+  mainStore.commit('setNavDarkActive', {
+    navDarkActive: true
+  })
+  mainStore.commit('setHeaderShow', {
+    headerShow: false
+  })
+  window.addEventListener('scroll', scrollHandle)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', scrollHandle)
+})
+
+function scrollHandle () {
+  scrollTop.value =
+    document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+  oldScrollTop.value = scrollTop.value
+  if (scrollTop.value >= 350) {
+    mainStore.commit('setHeaderShow', {
+      headerShow: true
     })
-    mainStore.commit('setHeaderLogo', {
-      headerLogoShow: false
+  } else {
+    mainStore.commit('setHeaderShow', {
+      headerShow: false
     })
   }
-  next()
-})
+  searchBarFixedTop.value = scrollTop.value >= 430
+}
+
 </script >
 <style lang="less" scoped>
 @hover_color: #3370ff;
