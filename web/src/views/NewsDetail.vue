@@ -1,140 +1,260 @@
 <template>
-  <div class="news-detail">
-    <AwHeader class="news_header" ref="news_header"></AwHeader>
-    <div class="container">
-      <div class="left">
-        <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{ path: '/index' }">首页</el-breadcrumb-item>
-          <el-breadcrumb-item>{{ news_detail.type }}</el-breadcrumb-item>
-          <el-breadcrumb-item>{{ news_detail.title }}</el-breadcrumb-item>
-        </el-breadcrumb>
-        <div class="content">
-          <h1>{{ news_detail.title }}</h1>
-          <span>{{ news_detail.publish_time }}</span>
-          <el-divider><i class="el-icon-view"></i></el-divider>
-          <article class="article" v-html="news_detail.content"></article>
+  <div class="news">
+    <AwHeader class="news_header" ref="headRef" />
+    <div class="box">
+      <div class="news-body">
+        <div class="body">
+          <div class="body-left"></div>
+          <div class="body-right">
+            <div class="right1">
+              <div class="r1-1">
+              </div>
+              <div class="r1-2">
+                <h2>宋浩老师</h2>
+                <p>XX大学</p>
+                <p>贡献资源：教案325 | 课件 254 | 教学实录 88</p>
+              </div>
+            </div>
+            <div class="right2">
+              <h2>￥666起</h2>
+            </div>
+            <div class="right3">
+              <div class="r3-1">
+                <h2>立即购买</h2>
+              </div>
+              <div class="r3-2">
+                <h2>加入购物车</h2>
+              </div>
+              <div class="r3-3">
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-      <hot-news class="right"></hot-news>
+
     </div>
-    <AwFooter></AwFooter>
+    <AwFooter />
   </div>
 </template>
+<script lang="ts" setup>
+import AwHeader from '@/components/public/Header.vue'
+import AwFooter from '@/components/public/Footer.vue'
+import CheckboxAndDropdown from '@/components/CheckboxAndDropdown.vue'
+import mainStore from '@/store'
+import { onBeforeRouteLeave } from 'vue-router'
+import { computed, onBeforeMount, onMounted, onUnmounted, ref, reactive } from 'vue'
 
-<script setup>
-import AwHeader from '@/components/public/Header'
-import AwFooter from '@/components/public/Footer'
-import HotNews from '@/components/HotNews'
-import { computed, onMounted, reactive, ref } from 'vue'
-import { onBeforeRouteLeave, useRoute, useRouter } from 'vue-router'
-import { useStore } from 'vuex'
-import { getNewsDetailsApi } from '@/apis/news'
 
-const route = useRoute()
-const router = useRouter()
+const jobCities = ref([])
+const job_category_id_list = ref([])
+const location_code_list = ref([])
+const searchBarFixedTop = ref(false)
+const searchKeyword = ref('')
+const currentPage = ref(1)
+const pageSize = ref(10)
+const loading = ref(false)
+const locationCodeProps = ref({
+  label: 'name'
+})
+const singlePage = ref(false)
+const checked = ref(false)
+const scrollTop = ref(0)
+const oldScrollTop = ref(0)
 
-const store = useStore()
-
-const news_detail = ref(
-  {
-    title: '',
-    publish_time: '',
-    content: '',
-    type: ''
+const queryFilter = computed(() => {
+  return {
+    job_category_id_list: job_category_id_list.value,
+    location_code_list: location_code_list.value,
+    keyword: searchKeyword.value,
+    pagesize: pageSize.value,
+    currentPage: currentPage.value
   }
-)
-
-const news_path = computed(() => route.params?.id ?? '')
-onMounted(() => {
-  store.commit('setShadowActive', {
-    headerLogoShow: false
-  })
-
-  store.commit('setShadowActive', {
-    headerShadowActive: true
-  })
-
-  store.commit('setNavDarkActive', {
-    navDarkActive: true
-  })
-
-  store.commit('setHeaderShow', {
-    headerShow: false
-  })
-  getNewsDetails()
 })
 
-// 获取新闻详情
-async function getNewsDetails () {
-  const { data: res } = await getNewsDetailsApi(news_path.value)
-  if (res.status !== 200) {
-    console.log(res)
+
+
+onMounted(() => {
+  mainStore.commit('setHeaderLogo', {
+    headerLogoShow: false
+  })
+  mainStore.commit('setShadowActive', {
+    headerShadowActive: false
+  })
+  mainStore.commit('setNavDarkActive', {
+    navDarkActive: true
+  })
+  mainStore.commit('setHeaderShow', {
+    headerShow: false
+  })
+  window.addEventListener('scroll', scrollHandle)
+})
+
+onUnmounted(() => {
+  window.removeEventListener('scroll', scrollHandle)
+})
+
+function scrollHandle () {
+  scrollTop.value =
+    document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop
+  oldScrollTop.value = scrollTop.value
+  if (scrollTop.value >= 350) {
+    mainStore.commit('setHeaderShow', {
+      headerShow: true
+    })
   } else {
-    // this.$message.success('获取成功')
-    news_detail.value = {
-      title: res.data.news_detail.news_title,
-      publish_time: res.data.news_detail.publish_time,
-      content: res.data.news_detail.news_content,
-      type: res.data.news_detail.aw_news_type.type_name
-    }
+    mainStore.commit('setHeaderShow', {
+      headerShow: false
+    })
   }
+  searchBarFixedTop.value = scrollTop.value >= 430
 }
-</script>
 
-<style lang = "less" scoped>
+// 请求筛选条件
+
+</script >
+<style lang="less" scoped>
+@hover_color: #3370ff;
+
+* {
+  margin: 0;
+  padding: 0;
+}
 .news_header {
-  background-color: rgba(255, 255, 255, .5);
+  background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
-  /* border-bottom: 1px solid #eff0f1; */
+  //border-bottom: 1px solid #eff0f1;
 }
 
-.container {
+.box {
   padding-top: 60px;
-  position: relative;
+  //background: url("../../assets/img/news/bg_02.jpg");
+  //background-size: cover;
+}
+
+.news-body {
+  width: 100%;
+  height: 600px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  background-color: lightblue;
+  border: 1px solid gray;
   display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
-  /* background: #d3dce6; */
-  min-height: 580px;
-  margin: 0 auto;
 }
 
-.el-breadcrumb {
-  height: 40px;
-  font-size: 13px;
-  padding-top: 40px;
+.body{
+  width: 100%;
+  margin:2%;
+  background-color: white;
+  margin-bottom: 6%;
+  border: 1px solid gray;
+  margin: 20px;
+  display: flex;
 }
 
-:deep(.el-breadcrumb__item){
-  &:last-child{
-    span{
-      color: #f84521;
-    }
-  }
+.body-left{
+  width: 50%;
+  height: 80%;
+  background: url(../assets/img/banner1.jpg) 100% no-repeat;
+  background-size: cover;
+  flex: 1;
 }
 
-.content {
-  width: 860px;
-
-  h1 {
-    font-size: 23px;
-    line-height: 30px;
-    padding: 20px 0 14px;
-  }
-
-  span {
-    color: @regular-text-color;
-    line-height: 18px;
-  }
-}
-
-.article {
-  margin-top: 5px;
-  overflow: hidden;
-}
-
-.right {
+.body-right{
+  width: 50%;
+  height: 80%;
   margin-left: 50px;
-  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+.right1{
+  width: 100%;
+  height: 40%;
+  display: flex;
+  flex-direction: row;
+  padding: 5px;
+  justify-content: space-between;
+
+  h2{
+    color:black;
+    font-size: 48px;
+    text-align: left;
+    margin-left: 40px;
+    margin-top: 10px;
+  }
+  p{    
+    color:gray;
+    font-size: 20px;
+    text-align: left;
+    margin-left: 40px;
+    margin-top: 15px;
+  }
 }
+.r1-1{
+  width: 25%;
+  height: 100%;
+  background: url(../assets/img/news/detail.jpg) 100% no-repeat;
+  background-size: cover;
+}
+.r1-2{
+  width: 75%;
+  height: 100%;
+}
+.right2{
+  width: 100%;
+  height: 30%;
+
+  h2{
+    color:bisque;
+    font-size: 52px;
+    text-align: left;
+    margin-top: 60px;
+    margin-left: 20px;
+  }
+}
+.right3{
+  width: 100%;
+  height: 30%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+.r3-1{
+  width: 40%;
+  height: 100%;
+  justify-content: center; /* 水平居中 */
+  align-items: center; /* 垂直居中 */
+  background-color:cadetblue;
+
+  h2{
+    text-align:center;
+    color:white;
+    font-size: 52px;
+  }
+}
+.r3-2{
+  width: 40%;
+  height: 100%;
+  background-color: aquamarine ;
+
+  h2{
+    text-align: center;
+    color:white;
+    font-size: 52px;
+  }
+}
+.r3-3{
+  width: 20%;
+  height: 100%;
+  background: url(../assets/img/news/shoucang.jpg) 100% no-repeat;
+}
+}
+
+</style>
+
+<style lang="less">
+@hover_color: #3370ff;
 </style>
