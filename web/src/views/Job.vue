@@ -17,7 +17,7 @@
         <el-button :class="[{ medium: searchBarFixedTop }, 'small']" type="text" round>搜索
         </el-button>
       </div>
-      <div class="lianxifangshi">联系方式 —— tel : xxxxxxxxxxx          email : xxxxxxxx     address : 中南财经政法大学</div>
+      <div class="lianxifangshi">联系方式 —— tel : xxxxxxxxxxx  email : xxxxxxxx  address : 中南财经政法大学</div>
     </div>
     <AwFooter />
   </div>

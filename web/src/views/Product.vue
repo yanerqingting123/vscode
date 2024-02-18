@@ -9,6 +9,17 @@
         <div class="search-box">
           <input type="text" placeholder="搜索历史记录">
         </div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
+        <div class="history">这是一条历史记录...</div>
       </div>
 
     </div>
@@ -33,6 +44,10 @@ const duration = ref(1000)
 const item = computed(() => products.value[activeIndex.value] || {})
 </script>
 <style lang = "less" scoped>
+.history{
+  margin-left: 40px;
+  margin-top: 35px;
+}
 .container {
   display: flex;
   flex-direction: column;
