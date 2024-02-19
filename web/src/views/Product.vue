@@ -9,17 +9,42 @@
         <div class="search-box">
           <input type="text" placeholder="搜索历史记录">
         </div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
-        <div class="history">这是一条历史记录...</div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
+        <div class="history_container">
+          <img src="../assets/img/new_imgs/robot.png"  class="robot">
+          <div class="history">哈喽，这是一条历史记录...</div>
+        </div>
       </div>
 
     </div>
@@ -44,8 +69,17 @@ const duration = ref(1000)
 const item = computed(() => products.value[activeIndex.value] || {})
 </script>
 <style lang = "less" scoped>
+.history_container{
+  display: flex;
+  align-items: center; /* 垂直居中对齐 */
+}
+.robot{
+  margin-left: 25px;
+  width: 30px;
+  margin-top: 30px;
+}
 .history{
-  margin-left: 40px;
+  margin-left: 15px;
   margin-top: 35px;
 }
 .container {
