@@ -1,61 +1,122 @@
 <template>
-    <!-- 聊天对话框组件，显示聊天消息 -->
-    <div class="chat-dialog">
-        <!-- 使用 ChatBubble 组件渲染每一条消息 -->
-        <ChatBubble v-for="message in messages" :key="message.id" :message="message" />
-        <!-- 输入框用于发送消息 -->
-        <input v-model="newMessage" @keyup.enter="sendMessage" placeholder="Type your message..." />
+    <div class="dialog-container">
+        <div class="dialog-content">
+            <div v-if="messages.length">
+                <div v-for="(message, index) in messages" :key="index" class="message">
+                    <div>
+                        <div class="img-container">
+                            <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                            <div class="title">你好，我是先科硬科普新传</div>
+                        </div>
+                        <div class="font">我是你的智能伙伴，先科硬科普新传——创课神器</div>
+                        <div class="font">我可以根据你的教学设计为你生成逐字稿，也能根据你的教学设计生成教学课件。</div>
+                        <div class="text">{{ message.text }}</div>
+                    </div>
+                </div>
+            </div>
+            <div v-else class="placeholder">开始一次新的对话...</div>
+            <div v-if="showInput" class="user-input">
+                <textarea v-model="userMessage" placeholder="请输入您的需求..."></textarea>
+                <button @click="submitMessage">提交</button>
+            </div>
+        </div>
     </div>
 </template>
 
-<script setup>
-import ChatBubble from '@/components/ChatBubble.vue' // 引入 ChatBubble 组件
-import { ref } from 'vue'
+<script>
+export default {
+  props: {
+    showInput: Boolean
+  },
+  data () {
+    return {
+      userMessage: '',
+      messages: [
+        { text: '欢迎使用我们的项目，这里是功能介绍...hahah哈哈哈ahahha', avatar: '../assets/img/new_imgs/robot.png' }
+      ]
+    }
+  },
 
-// props
-// eslint-disable-next-line no-undef
-const { messages } = toRefs(defineProps(['messages']))
-
-// state
-const newMessage = ref('')
-
-// methods
-// const sendMessage = () => {
-// // 创建新消息对象，这里假设消息的结构包括 id、content、sender 等属性
-//   const message = {
-//     id: generateUniqueId(),
-//     content: newMessage.value,
-//     sender: 'user'// 暂时假设消息由用户发送
-//   },
-//   // 将新消息添加到消息列表中
-//   messages.value.push(message)
-//   // 清空输入框
-//   newMessage.value = '';
-// };
-
-// 生成唯一的消息 ID，这里可以使用更复杂的逻辑
-// const generateUniqueId = () => {
-//     return '_' + Math.random().toString(36).substr(2, 9);
-// };
+  methods: {
+    submitMessage () {
+      if (this.userMessage.trim() !== '') {
+        this.messages.push({ text: this.userMessage, avatar: 'user-avatar.jpg' });
+        this.userMessage = ''
+        this.$emit('userSubmit')
+      }
+    }
+  }
+}
 </script>
 
 <style scoped>
-/* 聊天对话框样式，样式可能需要根据实际情况调整 */
-.chat-dialog {
+.font{
+    margin-top: 5px;
+    margin-left: 5px;
+    color: #6c6c6c;
+}
+.title{
+    font-size: 25px;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.img-container{
     display: flex;
-    flex-direction: column;
-    padding: 20px;
-    background-color: #ffffff;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.robot{
+  margin-left: 0px;
+  width: 40px;
+  margin-top: 0px;
+}
+.dialog-container {
+    width: 800px;
+    margin: 20px auto;
 }
 
-/* 输入框样式，样式可能需要根据实际情况调整 */
-input {
-    margin-top: 12px;
-    padding: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
+.dialog-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    border-radius: 50%;
+}
+
+.text {
+    flex-grow: 1;
+}
+
+.placeholder {
+    color: #999;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.user-input {
+    margin-top: 10px;
+}
+
+textarea {
+    width: 100%;
+    resize: none;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+button {
+    padding: 5px 10px;
+    cursor: pointer;
 }
 </style>

@@ -46,29 +46,54 @@
           <div class="history">哈喽，这是一条历史记录...</div>
         </div>
       </div>
+      <div class="dialog-container">
+        <ChatDialog v-if="showComputerDialog" :showInput="true" @userSubmit="handleUserSubmit" />
+        <ChatDialog v-if="showUserDialog" :showInput="false" />
+      </div>
 
     </div>
 
   </div>
 </template>
-<script lang="ts" setup>
+<script>
 import AwHeader from '@/components/public/Header.vue'
-import mainStore from '@/store'
-import { computed, onBeforeMount, onMounted, onUnmounted, ref, watch } from 'vue'
-import { getProductLit } from '@/apis/product'
-import { onBeforeRouteLeave } from 'vue-router'
 import ChatDialog from '@/components/ChatDialog.vue'
 
-const loading = ref(false)
-const products = ref<Record<string, string>[]>([])
-const activeIndex = ref(0)
-const transitionName = ref('')
-const scrolling = ref(false)
-const duration = ref(1000)
+export default {
+  data () {
+    return {
+      showComputerDialog: true,
+      showUserDialog: false
+    }
+  },
+  methods: {
+    handleUserSubmit () {
+      // 处理用户提交后的逻辑，可以触发电脑回复的操作
+      this.showComputerDialog = false
+      this.showUserDialog = true
+      // 这里可以触发电脑回复的操作
+      setTimeout(() => {
+        this.showUserDialog = false
+        this.showComputerDialog = true
+      }, 1500) // 模拟电脑回复的延时效果
+    }
+  },
+  components: {
+    ChatDialog
+  }
+}
 
-const item = computed(() => products.value[activeIndex.value] || {})
 </script>
 <style lang = "less" scoped>
+.dialog-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 1000px;
+  background-color: #f7fafb;
+}
 .history_container{
   display: flex;
   align-items: center; /* 垂直居中对齐 */
@@ -93,7 +118,7 @@ const item = computed(() => products.value[activeIndex.value] || {})
 .main-container {
   display: flex;
   overflow: hidden;
-  background-color: #f2f9fd;
+  background-color: #f7fafb;
 }
 
 .sidebar {
