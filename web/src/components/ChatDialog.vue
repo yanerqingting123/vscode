@@ -10,15 +10,51 @@
                         </div>
                         <div class="font">我是你的智能伙伴，先科硬科普新传——创课神器</div>
                         <div class="font">我可以根据你的教学设计为你生成逐字稿，也能根据你的教学设计生成教学课件。</div>
-                        <div class="text">{{ message.text }}</div>
+                        <div class="text">  {{ message.text }}</div>
+                        <div class="big-container">
+                            <div class="function-container">
+                                <div class="function-second-container">
+                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <div class="second-title">教学大纲建议</div>
+                                </div>
+                                <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我想做一份教学设计，你能给我列一个大纲吗？</div>
+                            </div>
+                            <div class="function-container">
+                                <div class="function-second-container">
+                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <div class="second-title">教学设计建议</div>
+                                </div>
+                                <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我想做一份创意的教学设计，能给我一些建议吗？</div>
+                            </div>
+                        </div>
+                        <div class="big-container">
+                            <div class="function-container">
+                                <div class="function-second-container">
+                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <div class="second-title">逐字稿生成</div>
+                                </div>
+                                <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我有一份教学设计，你能根据我的教学设计帮我生成逐字稿吗？</div>
+                            </div>
+                            <div class="function-container">
+                                <div class="function-second-container">
+                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <div class="second-title">教学课件生成</div>
+                                </div>
+                                <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我有一份教学设计，你能根据我的教学设计帮我生成教学课件吗？</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div v-else class="placeholder">开始一次新的对话...</div>
-            <div v-if="showInput" class="user-input">
+            <!-- <div v-if="showInput" class="user-input">
                 <textarea v-model="userMessage" placeholder="请输入您的需求..."></textarea>
                 <button @click="submitMessage">提交</button>
-            </div>
+            </div> -->
+        </div>
+        <div v-if="showInput" class="user-input">
+                <textarea v-model="userMessage" placeholder="请输入您的需求..."></textarea>
+                <button @click="submitMessage">提交</button>
         </div>
     </div>
 </template>
@@ -32,7 +68,7 @@ export default {
     return {
       userMessage: '',
       messages: [
-        { text: '欢迎使用我们的项目，这里是功能介绍...hahah哈哈哈ahahha', avatar: '../assets/img/new_imgs/robot.png' }
+        { text: '............', avatar: '../assets/img/new_imgs/robot.png' }
       ]
     }
   },
@@ -50,6 +86,22 @@ export default {
 </script>
 
 <style scoped>
+.big-container{
+    display: flex;
+}
+.function-container{
+    background-color: rgb(240, 248, 255);
+    margin-top: 20px;
+    padding-bottom: 15px;
+    padding-top: 5px;
+    width: 340px;
+    border-radius: 12px;
+    margin-left: 20px;
+}
+.function-second-container{
+    background-color: aliceblue;
+    display: flex;
+}
 .font{
     margin-top: 5px;
     margin-left: 5px;
@@ -60,6 +112,13 @@ export default {
     margin-top: 5px;
     margin-left: 10px;
     font-weight: bold;
+}
+.second-title{
+    font-size: 18px;
+    margin-top: 5px;
+    margin-left: 10px;
+    font-weight: bold;
+    color: #474643;
 }
 .img-container{
     display: flex;
@@ -78,7 +137,9 @@ export default {
     background: #fff;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+    width: 750px;
+    margin-left: 200px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
 .message {
@@ -105,7 +166,14 @@ export default {
 }
 
 .user-input {
-    margin-top: 10px;
+    margin-top: 50px;
+    background: #fff;
+    padding: 20px;
+    width: 750px;
+    border-radius: 10px;
+    margin-left: 200px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
 }
 
 textarea {
