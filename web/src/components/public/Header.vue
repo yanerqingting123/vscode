@@ -43,7 +43,7 @@ const headerShow = computed(() => store.state.headerShow)
 const headerLogoShow = computed(() => store.state.headerLogoShow)
 const navDarkActive = computed(() => store.state.navDarkActive)
 logo_img.value = [{
-  path: require('../../assets/img/index/newlogo.png')
+  path: require('../../assets/img/index/logo.png')
 },
 {
   path: require('../../assets/img/index/logoColor.png')
