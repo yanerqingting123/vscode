@@ -14,14 +14,14 @@
                         <div class="big-container">
                             <div class="function-container">
                                 <div class="function-second-container">
-                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <img src="../assets/img/new_imgs/key.png"  class="robot">
                                     <div class="second-title">教学大纲建议</div>
                                 </div>
                                 <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我想做一份教学设计，你能给我列一个大纲吗？</div>
                             </div>
                             <div class="function-container">
                                 <div class="function-second-container">
-                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <img src="../assets/img/new_imgs/love.png"  class="robot">
                                     <div class="second-title">教学设计建议</div>
                                 </div>
                                 <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我想做一份创意的教学设计，能给我一些建议吗？</div>
@@ -30,14 +30,14 @@
                         <div class="big-container">
                             <div class="function-container">
                                 <div class="function-second-container">
-                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <img src="../assets/img/new_imgs/jiantou.png"  class="robot">
                                     <div class="second-title">逐字稿生成</div>
                                 </div>
                                 <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我有一份教学设计，你能根据我的教学设计帮我生成逐字稿吗？</div>
                             </div>
                             <div class="function-container">
                                 <div class="function-second-container">
-                                    <img src="../assets/img/new_imgs/robot.png"  class="robot">
+                                    <img src="../assets/img/new_imgs/huojian.png"  class="robot">
                                     <div class="second-title">教学课件生成</div>
                                 </div>
                                 <div style="margin-left: 15px; margin-right: 15px; line-height: 30px; color: rgb(100, 94, 94);">我有一份教学设计，你能根据我的教学设计帮我生成教学课件吗？</div>

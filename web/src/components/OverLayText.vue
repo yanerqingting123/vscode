@@ -2,8 +2,8 @@
     <div class="overlay">
         <div class="overlay-content">
             <div class="slogan sofiaBold">
-                <div class="slogan-title">互联网+时代</div>
-                <div class="slogan-subtitle">BELIEVE IN YOURSELF</div>
+                <div class="slogan-title">先科硬科普新传</div>
+                <div class="slogan-subtitle">Xian Ke Ying Ke Pu Xin Chuan</div>
             </div>
         </div>
     </div>
