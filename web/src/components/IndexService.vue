@@ -120,7 +120,7 @@ onBeforeMount(() => {
     },
     {
       desc: '原创教具包',
-      path: require('../assets/img/index/system1.jpg')
+      path: require('../assets/img/index/jiaojubao.png')
     },
     {
       desc: '课程文创IP',
