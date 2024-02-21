@@ -3,9 +3,9 @@
         <div class="content-blok service-block">
             <div class="servie-block">
                 <div class="block-line"></div>
-                <p class="service-info-title">我们的服务</p>
-                <p class="service-info-subtitle">我们已定制多套解决方案，助您轻松跨入“互联网+”时代</p>
-                <div class="service-list">
+                <p class="service-info-title">先科硬科普新传</p>
+                <p class="service-info-subtitle">用最先进的科技创新教育，筑牢未来科创人才的“童子功”</p>
+                <!-- <div class="service-list">
                     <div class="service-title" v-for="(item, index) in serviceList" :key="index">
                         <div class="is-hover-shadow">
                             <div class="service-title-shadow ">
@@ -14,8 +14,10 @@
                         </div>
                         <p class="service-name">{{ item.description }}</p>
                     </div>
-                </div>
+                </div> -->
+                <img src="../assets/img/new_imgs/1.png"  class="service-img">
             </div>
+            <button class="custom-button">订制服务</button>
         </div>
         <div class="content-blok service-idea">
             <div class="service-idea">
@@ -37,8 +39,8 @@
         <div class="content-blok service-case">
             <div class="service-case">
                 <div class="block-line"></div>
-                <p class="case-title">我们的服务</p>
-                <p class="case-subtitle">我们已定制多套解决方案，助您轻松跨入“互联网+”时代</p>
+                <p class="case-title">主营服务</p>
+                <p class="case-subtitle">未来之星，由先科绽放。始终坚持坚持以孩子为中心，以科学为导向的经营理念</p>
                 <div class="case-list">
                     <div class="case-info" v-for="(item, index) in caseList" :key="index">
                         <el-card :body-style="{ padding: '0px' }" shadow="hover">
@@ -77,7 +79,7 @@ const serviceList = ref<ServiceItem[]>([])
 const serviceIdeaInfo = ref<InfoData>({
   ideaTitle: '服务理念',
   ideaSubTitle: 'SERVICE IDEA',
-  ideaDesc: '专注品牌事业十余年，是一家兼具国际视野、创新动力、全方位跨平台的品牌咨询与设计整合服务公司。公司业务涉及大数据、智能多媒体、物联网。'
+  ideaDesc: '专注打造“高质量、多学科融合、多应用场景的PBL+STEAM深度硬科普系列标准化课程”，通过线上线下渠道融合、跨学科、项目式的展馆研学课程，助力展陈公司、科技馆升级或重构展馆的内容与形式，为研学机构提供优质内容。'
 })
 const serviceIdeaImg = ref<ImgItem[]>([])
 const caseList = ref<CaseItem[]>([])
@@ -113,25 +115,45 @@ onBeforeMount(() => {
   ]
   caseList.value = [
     {
-      desc: '私家智能定制APP',
-      path: require('../assets/img/index/app1.jpg')
+      desc: '原创课程包',
+      path: require('../assets/img/index/kechengbao.jpg')
     },
     {
-      desc: '公司业绩统计管理系统',
+      desc: '原创教具包',
       path: require('../assets/img/index/system1.jpg')
     },
     {
-      desc: '私家智能定制APP',
+      desc: '课程文创IP',
       path: require('../assets/img/index/app1.jpg')
     },
     {
-      desc: '公司业绩统计管理系统',
+      desc: '定制课程及服务',
       path: require('../assets/img/index/system2.jpg')
     }
   ]
 })
 </script>
 <style lang="less" scoped>
+ .custom-button {
+            background-color: #8ec1fb; /* 绿色 */
+            color: rgb(249, 247, 247); /* 文字颜色 */
+            padding: 15px 32px; /* 内边距 */
+            text-align: center; /* 文字居中 */
+            text-decoration: none; /* 去掉下划线 */
+            display: inline-block; /* 使其既有块级元素的特性，又有行内元素的特性 */
+            font-size: 20px; /* 文字大小 */
+            margin: 4px 2px; /* 外边距 */
+            cursor: pointer; /* 鼠标悬停时为指针形状 */
+            border: none; /* 去掉边框 */
+            border-radius: 8px; /* 边角圆润 */
+            box-shadow: 0 4px #999; /* 阴影效果 */
+            transition-duration: 0.4s; /* 过渡动画 */
+            margin-top: 20px;
+        }
+.service-img{
+    margin-top: 25px;
+    width: 800px;
+}
 .wrap-block {
     position: relative;
     padding-top: 54px;
@@ -144,7 +166,7 @@ onBeforeMount(() => {
 
 .service-block {
     max-width: 1440px;
-    height: 500px;
+    height: 700px;
     margin: 0 auto;
     text-align: center;
     overflow-x: hidden;
@@ -159,14 +181,14 @@ onBeforeMount(() => {
 
     .service-info-title {
         font-weight: 700;
-        font-size: 32px;
+        font-size: 34px;
         position: relative;
         bottom: 2px;
-        //padding-top: 60px;
+        padding-top: 20px;
     }
 
     .service-info-subtitle {
-        font-size: 16px;
+        font-size: 20px;
         line-height: 1.5;
         color: #646a73;
         margin-top: 30px;

@@ -46,7 +46,7 @@ logo_img.value = [{
   path: require('../../assets/img/index/logo.png')
 },
 {
-  path: require('../../assets/img/index/logoColor.png')
+  path: require('../../assets/img/index/logo.png')
 }
 ]
 onBeforeMount(() => {
@@ -56,15 +56,15 @@ onBeforeMount(() => {
       path: '/index'
     },
     {
-      title: '课程推荐',
+      title: '智慧引航',
       path: '/news'
     },
     {
-      title: '课程助手',
+      title: '创课神器',
       path: '/product'
     },
     {
-      title: '联系我们',
+      title: '沟通驿站',
       path: '/job'
     },
     // {
@@ -130,7 +130,7 @@ h2 {
         flex: 0 0 auto;
 
         img {
-            height: 35px;
+            height: 75px;
         }
     }
 }
