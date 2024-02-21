@@ -5,19 +5,10 @@
                 <div class="block-line"></div>
                 <p class="service-info-title">先科硬科普新传</p>
                 <p class="service-info-subtitle">用最先进的科技创新教育，筑牢未来科创人才的“童子功”</p>
-                <!-- <div class="service-list">
-                    <div class="service-title" v-for="(item, index) in serviceList" :key="index">
-                        <div class="is-hover-shadow">
-                            <div class="service-title-shadow ">
-                                <img :src="item.path" alt="">
-                            </div>
-                        </div>
-                        <p class="service-name">{{ item.description }}</p>
-                    </div>
-                </div> -->
                 <img src="../assets/img/new_imgs/1.png"  class="service-img">
             </div>
-            <button class="custom-button">订制服务</button>
+            <MyButton />
+            <!-- <button class="custom-button">订制服务</button> -->
         </div>
         <div class="content-blok service-idea">
             <div class="service-idea">
@@ -56,6 +47,8 @@
 </template>
 <script lang="ts" setup name="">
 import { onBeforeMount, onMounted, ref } from 'vue'
+import MyButton from '@/components/MyButton.vue'
+
 // 这里演示一下如何实现复杂类型的定义，使用ts接口继承
 interface BaseItem {
     path: string;

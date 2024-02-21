@@ -53,8 +53,12 @@
             </div> -->
         </div>
         <div v-if="showInput" class="user-input">
+            <!-- <div class="wenjian-container">
+                <div class="wenjian">上传文件</div>
+            </div> -->
                 <textarea v-model="userMessage" placeholder="请输入您的需求..."></textarea>
-                <button @click="submitMessage">提交</button>
+                <button @click="submitMessage" class="shengcheng-button">逐字稿</button>
+                <button @click="submitMessage" class="shengcheng-button">PPT</button>
         </div>
     </div>
 </template>
@@ -86,6 +90,24 @@ export default {
 </script>
 
 <style scoped>
+.wenjian{
+    color: #474643;
+    width: 80px;
+}
+.wenjian-container{
+    display: flex;
+    margin-left: 100px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+}
+.shengcheng-button{
+    background-color: rgb(234, 242, 250);
+    margin-top: 40px;
+    width: 90px;
+    border-radius: 5px;
+    /* padding-left: 10px; */
+    margin-right: 10px;
+}
 .big-container{
     display: flex;
 }

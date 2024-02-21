@@ -5,8 +5,8 @@
                 <div class="logo-container">
                     <img :src="logo_url" alt="">
                     <div class="logo-text">
-                        <p class="text1">Xanadu</p>
-                        <p class="text2">INTERNET COMPANY</p>
+                        <p class="text1">先科新传</p>
+                        <p class="text2">Xian Ke Xin Chuan</p>
                     </div>
                 </div>
                 <h2>© 2023-2024 Xanadu&nbsp;科技有限公司</h2>
@@ -65,7 +65,7 @@ type FocusItem = {
 const footerHeight = ref('')
 const curWidth = ref('')
 const logo_url = ref<any>()
-logo_url.value = require('../../assets/img/index/logoColor.png')
+logo_url.value = require('../../assets/img/index/logo-nofont.png')
 const contact_way = ref<ConcatItem[]>([])
 const focus_icon = ref<FocusItem[]>([])
 
