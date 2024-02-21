@@ -9,7 +9,7 @@
                         <p class="text2">INTERNET COMPANY</p>
                     </div>
                 </div>
-                <h2>© 2020-2021 Xanadu&nbsp;科技有限公司</h2>
+                <h2>© 2023-2024 Xanadu&nbsp;科技有限公司</h2>
                 <h2>X公网安备 xxxxxxxxxxxxxx号 I ICP备xxxxxxxx号-1</h2>
             </div>
             <div class="about_us footer-content-column">

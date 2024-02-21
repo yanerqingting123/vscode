@@ -44,7 +44,7 @@
                 <div class="case-list">
                     <div class="case-info" v-for="(item, index) in caseList" :key="index">
                         <el-card :body-style="{ padding: '0px' }" shadow="hover">
-                            <img :src="item.path" :alt="item.desc">
+                            <img :src="item.path" :alt="item.desc" class="service-img-class">
                         </el-card>
                         <el-progress :percentage="50" :show-text="false"></el-progress>
                         <p class="case-desc">{{ item.desc }}</p>
@@ -116,7 +116,7 @@ onBeforeMount(() => {
   caseList.value = [
     {
       desc: '原创课程包',
-      path: require('../assets/img/index/kechengbao.jpg')
+      path: require('../assets/img/index/kechengbao.png')
     },
     {
       desc: '原创教具包',
@@ -124,16 +124,21 @@ onBeforeMount(() => {
     },
     {
       desc: '课程文创IP',
-      path: require('../assets/img/index/app1.jpg')
+      path: require('../assets/img/index/wenchuangip.png')
     },
     {
       desc: '定制课程及服务',
-      path: require('../assets/img/index/system2.jpg')
+      path: require('../assets/img/index/dingzhifuwu.png')
     }
   ]
 })
 </script>
 <style lang="less" scoped>
+.service-img-class{
+    width: 200px;
+    margin-top: 10px;
+    height: 200px;
+}
  .custom-button {
             background-color: #8ec1fb; /* 绿色 */
             color: rgb(249, 247, 247); /* 文字颜色 */
