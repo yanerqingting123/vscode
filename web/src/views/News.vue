@@ -24,6 +24,8 @@
       <p>
         热门搜索
       </p>
+      <LI>人工智能    珍惜动物</LI>
+      <LI>人文故事    vr技术</LI>
         </div>
       </div>
       <div class="news-body">
@@ -31,18 +33,18 @@
             <div class="image-container1">
             </div>
           <div class="text-container">
-            <h3><router-link to="/newsDetail" >综合素质提升课：500</router-link></h3>
-            <p>课程介绍：教育部门可使用平台内综合素质评价方案，要求
-              各级学校评分建档，建立学生综合素质评价档案库</p>
+            <h3><router-link to="/newsDetail" >汽车动力之旅：666</router-link></h3>
+            <p>课程介绍：了解汽车动力核心，掌握机械、电气
+              与环保知识，体验智能科技，探索汽车未来趋势。</p>
           </div>
         </div>
         <div class="banner-2">
           <div class="image-container2">
           </div>
           <div class="text-container">
-            <h3>综合素质提升课：500</h3>
-            <p>课程介绍：教育部门可使用平台内综合素质评价方案，要求
-              各级学校评分建档，建立学生综合素质评价档案库
+            <h3>智能LED与机器人：888</h3>
+            <p>课程介绍：带领6-12岁的小学生开展探索人工
+              智能原理、智能LED及会唱歌的“机器人”课程。
             </p>
           </div>
         </div>
@@ -50,18 +52,18 @@
           <div class="image-container3">
           </div>
           <div class="text-container">
-            <h3>在线巡课评课：800</h3>
-            <p>可组织辖区内学校老师网授公开课并开展集体在线巡课，对授
-              课进行听评课，集中力量提示教研教学水平</p>
+            <h3>创意DIY：588</h3>
+            <p>课程介绍：激发无限创意，掌握手工技巧，
+              打造个性作品，享受创作乐趣。</p>
           </div>
         </div>
         <div class="banner-4">
           <div class="image-container4">
           </div>
           <div class="text-container">
-            <h3>在线巡课评课：800</h3>
-            <p>可组织辖区内学校老师网授公开课并开展集体在线巡课，对授
-              课进行听评课，集中力量提示教研教学水平</p>
+            <h3>在名画里的中国故事：800</h3>
+            <p>赏析经典画作，解读画中故事，感受中华
+              历史文化魅力，启发艺术审美与创造力。</p>
           </div>
         </div>
       </div>
@@ -174,7 +176,7 @@ function scrollHandle () {
 .banner-left{
   width: 60%;
   height: 100%;
-  background: url(../assets/img/banner1.jpg) 100% no-repeat;
+  background: url(../assets/img/index/banner.png) 100% no-repeat;
   background-size: cover;
   margin-left: 5%;
 }
@@ -210,6 +212,13 @@ function scrollHandle () {
     text-align: left;
     margin-left: 10%;
     margin-top: 25px;
+}
+LI{
+  color: gray;
+    font-size: 12px;
+    text-align: left;
+    margin-left: 10%;
+    margin-top: 15px;
 }
 }
 
@@ -262,7 +271,7 @@ function scrollHandle () {
 
 .image-container1 {
   height: 60%; /* 上面图片容器占据60%的高度 */
-  background-image: url('../assets/img/news/class1.jpg');
+  background-image: url('../assets/img/index/dingzhifuwu.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -271,7 +280,7 @@ function scrollHandle () {
 
 .image-container2 {
   height: 60%; /* 上面图片容器占据60%的高度 */
-  background-image: url('../assets/img/news/class2.jpg');
+  background-image: url('../assets/img/index/led.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -280,7 +289,7 @@ function scrollHandle () {
 
 .image-container3 {
   height: 60%; /* 上面图片容器占据60%的高度 */
-  background-image: url('../assets/img/news/class3.jpg');
+  background-image: url('../assets/img/index/diy.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
@@ -289,7 +298,7 @@ function scrollHandle () {
 
 .image-container4 {
   height: 60%; /* 上面图片容器占据60%的高度 */
-  background-image: url('../assets/img/news/class4.jpg');
+  background-image: url('../assets/img/index/gushi.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
