@@ -10,9 +10,9 @@
               <div class="r1-1">
               </div>
               <div class="r1-2">
-                <h2>宋浩老师</h2>
-                <p>XX大学</p>
-                <p>贡献资源：教案325 | 课件 254 | 教学实录 88</p>
+                <h2>汽车动力之旅</h2>
+                <p>适用年龄：6-15岁</p>
+                <p>涉及学科：机械工程、环境科学、计算机科学、设计与美学</p>
               </div>
             </div>
             <div class="right2">
@@ -154,7 +154,7 @@ function scrollHandle () {
 .body-left{
   width: 50%;
   height: 80%;
-  background: url(../assets/img/banner1.jpg) 100% no-repeat;
+  background: url(../assets/img/index/dingzhifuwu.png) 100% no-repeat;
   background-size: cover;
   flex: 1;
 }
@@ -224,7 +224,7 @@ function scrollHandle () {
 
 .r3-1{
   width: 40%;
-  height: 100%;
+  height: 70%;
   justify-content: center; /* 水平居中 */
   align-items: center; /* 垂直居中 */
   background-color:cadetblue;
@@ -232,24 +232,27 @@ function scrollHandle () {
   h2{
     text-align:center;
     color:white;
-    font-size: 52px;
+    font-size: 40px;
   }
 }
 .r3-2{
   width: 40%;
-  height: 100%;
+  height: 70%;
   background-color: aquamarine ;
+  margin-left: 5%;
 
   h2{
     text-align: center;
     color:white;
-    font-size: 52px;
+    font-size: 40px;
   }
 }
 .r3-3{
   width: 20%;
-  height: 100%;
-  background: url(../assets/img/news/shoucang.jpg) 100% no-repeat;
+  height: 70%;
+  margin-left: 5%;
+  margin-right: 10%;
+  background: url(../assets/img/news/shoucang.jpg) 1% no-repeat;
 }
 }
 
