@@ -25,7 +25,7 @@
         热门搜索
       </p>
       <li>人工智能<span class="spaced-list-item"></span>珍稀动物</li>
-      <li>人文故事<span class="spaced-list-item"></span>珍稀动物vr技术</LI>
+      <li>人文故事<span class="spaced-list-item"></span>vr技术</LI>
         </div>
       </div>
       <div class="news-body">
@@ -273,7 +273,7 @@ LI{
 
 .image-container1 {
   height: 60%; /* 上面图片容器占据60%的高度 */
-  background-image: url('../assets/img/index/diy.png');
+  background-image: url('../assets/img/index/dingzhiwufu.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
