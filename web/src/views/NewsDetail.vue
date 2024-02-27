@@ -20,10 +20,10 @@
             </div>
             <div class="right3">
               <div class="r3-1">
-                <h2>立即购买</h2>
+                <button class="my-button1">立即购买</button>  
               </div>
               <div class="r3-2">
-                <h2>加入购物车</h2>
+                <button class="my-button2">加入购物车</button> 
               </div>
               <div class="r3-3">
               </div>
@@ -154,7 +154,7 @@ function scrollHandle () {
 .body-left{
   width: 50%;
   height: 80%;
-  background: url(../assets/img/index/dingzhifuwu.png) 100% no-repeat;
+  background: url(../assets/img/banner1.jpg) 100% no-repeat;
   background-size: cover;
   flex: 1;
 }
@@ -225,27 +225,41 @@ function scrollHandle () {
 .r3-1{
   width: 40%;
   height: 70%;
-  justify-content: center; /* 水平居中 */
-  align-items: center; /* 垂直居中 */
   background-color:cadetblue;
-
-  h2{
-    text-align:center;
-    color:white;
-    font-size: 40px;
-  }
+  display: flex;  
+  justify-content: center;  
+  align-items: center; 
+  .my-button1 {    
+  display: inline-block; /* 确保按钮是内联块级元素 */ 
+  font-size: 40px; /* 字体大小 */  
+  color:white; /* 字体颜色 */ 
+  justify-content: center; /* 水平居中 */  
+  align-items: center; /* 垂直居中 */ 
+  border: none; /* 无边框 */  
+  border-radius: 5px; /* 边框圆角 */  
+  cursor: pointer; /* 鼠标悬停时变为手形 */  
+  /* 根据需要添加其他样式 */  
+} 
 }
 .r3-2{
   width: 40%;
   height: 70%;
   background-color: aquamarine ;
   margin-left: 5%;
-
-  h2{
-    text-align: center;
-    color:white;
-    font-size: 40px;
-  }
+  display: flex;  
+  justify-content: center;  
+  align-items: center; 
+  .my-button2 {    
+  display: inline-block; /* 确保按钮是内联块级元素 */ 
+  font-size: 40px; /* 字体大小 */  
+  color:white; /* 字体颜色 */ 
+  justify-content: center; /* 水平居中 */  
+  align-items: center; /* 垂直居中 */ 
+  border: none; /* 无边框 */  
+  border-radius: 5px; /* 边框圆角 */  
+  cursor: pointer; /* 鼠标悬停时变为手形 */  
+  /* 根据需要添加其他样式 */  
+}
 }
 .r3-3{
   width: 20%;
@@ -254,6 +268,8 @@ function scrollHandle () {
   margin-right: 10%;
   background: url(../assets/img/news/shoucang.jpg) 1% no-repeat;
 }
+
+ 
 }
 
 </style>
