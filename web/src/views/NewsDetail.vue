@@ -7,8 +7,6 @@
           <div class="body-left"></div>
           <div class="body-right">
             <div class="right1">
-              <div class="r1-1">
-              </div>
               <div class="r1-2">
                 <h2>汽车动力之旅</h2>
                 <p>适用年龄：6-15岁</p>
@@ -154,8 +152,11 @@ function scrollHandle () {
 .body-left{
   width: 50%;
   height: 80%;
-  background: url(../assets/img/banner1.jpg) 100% no-repeat;
+  background: url(../assets/img/index/dingzhiwufu.png) 100% no-repeat;
   background-size: cover;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-top: 2%;
   flex: 1;
 }
 
@@ -179,25 +180,19 @@ function scrollHandle () {
     color:black;
     font-size: 48px;
     text-align: left;
-    margin-left: 40px;
-    margin-top: 10px;
+    margin-left: 5px;
+    margin-top: 20px;
   }
   p{    
     color:gray;
     font-size: 20px;
     text-align: left;
-    margin-left: 40px;
+    margin-left: 5px;
     margin-top: 15px;
   }
 }
-.r1-1{
-  width: 25%;
-  height: 100%;
-  background: url(../assets/img/news/detail.jpg) 100% no-repeat;
-  background-size: cover;
-}
 .r1-2{
-  width: 75%;
+  width: 80%;
   height: 100%;
 }
 .right2{
@@ -208,7 +203,7 @@ function scrollHandle () {
     color:bisque;
     font-size: 52px;
     text-align: left;
-    margin-top: 60px;
+    margin-top: 40px;
     margin-left: 20px;
   }
 }
