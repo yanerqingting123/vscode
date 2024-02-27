@@ -24,8 +24,8 @@
       <p>
         热门搜索
       </p>
-      <LI>人工智能    珍惜动物</LI>
-      <LI>人文故事    vr技术</LI>
+      <li>人工智能<span class="spaced-list-item"></span>珍稀动物</li>
+      <li>人文故事<span class="spaced-list-item"></span>珍稀动物vr技术</LI>
         </div>
       </div>
       <div class="news-body">
@@ -198,7 +198,7 @@ function scrollHandle () {
       height: 46px;
       line-height: 46px;
       border-radius: 30px;
-      box-shadow: 0 2px 4px rgb(0 0 0 / 12%), 0 0 6px rgb(0 0 0 / 4%);
+      box-shadow: 0 0 0 , 0 0 0;
     }
     .el-input__icon {
       line-height: 46px;
@@ -222,7 +222,9 @@ LI{
 }
 }
 
-
+.spaced-list-item {  
+  margin-right: 3em; /* 这里的值可以根据需要调整，1em通常相当于当前字体大小的一倍 */  
+} 
 
 .news-body {
   width: 100%;
@@ -271,7 +273,7 @@ LI{
 
 .image-container1 {
   height: 60%; /* 上面图片容器占据60%的高度 */
-  background-image: url('../assets/img/index/dingzhifuwu.png');
+  background-image: url('../assets/img/index/diy.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
