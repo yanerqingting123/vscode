@@ -25,7 +25,7 @@
         热门搜索
       </p>
       <li>人工智能<span class="spaced-list-item"></span>珍稀动物</li>
-      <li>人文故事<span class="spaced-list-item"></span>vr技术</LI>
+      <li>人文故事<span class="spaced-list-item"></span>vr技术</li>
         </div>
       </div>
       <div class="news-body">
@@ -213,7 +213,7 @@ function scrollHandle () {
     margin-left: 10%;
     margin-top: 25px;
 }
-LI{
+li{
   color: gray;
     font-size: 12px;
     text-align: left;
