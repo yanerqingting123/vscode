@@ -24,8 +24,8 @@
       <p>
         热门搜索
       </p>
-      <li>人工智能<span class="spaced-list-item"></span>珍稀动物</li>
-      <li>人文故事<span class="spaced-list-item"></span>vr技术</LI>
+      <li>量子力学波粒二象性<span class="spaced-list-item"></span>恒星与星系</li>
+      <li>人工智能等前沿技术<span class="spaced-list-item"></span>VR技术基础</LI>
         </div>
       </div>
       <div class="news-body">
@@ -33,7 +33,7 @@
             <div class="image-container1">
             </div>
           <div class="text-container">
-            <h3><router-link to="/newsDetail" >汽车动力之旅：666</router-link></h3>
+            <h3><router-link to="/newsDetail" >汽车动力之旅   ¥666</router-link></h3>
             <p>课程介绍：了解汽车动力核心，掌握机械、电气
               与环保知识，体验智能科技，探索汽车未来趋势。</p>
           </div>
@@ -42,7 +42,7 @@
           <div class="image-container2">
           </div>
           <div class="text-container">
-            <h3>智能LED与机器人：888</h3>
+            <h3>智能LED与机器人   ¥888</h3>
             <p>课程介绍：带领6-12岁的小学生开展探索人工
               智能原理、智能LED及会唱歌的“机器人”课程。
             </p>
@@ -52,7 +52,7 @@
           <div class="image-container3">
           </div>
           <div class="text-container">
-            <h3>创意DIY：588</h3>
+            <h3>创意DIY  ¥588</h3>
             <p>课程介绍：激发无限创意，掌握手工技巧，
               打造个性作品，享受创作乐趣。</p>
           </div>
@@ -61,8 +61,8 @@
           <div class="image-container4">
           </div>
           <div class="text-container">
-            <h3>在名画里的中国故事：800</h3>
-            <p>赏析经典画作，解读画中故事，感受中华
+            <h3>在名画里的中国故事  ¥800</h3>
+            <p>课程介绍：赏析经典画作，解读画中故事，感受中华
               历史文化魅力，启发艺术审美与创造力。</p>
           </div>
         </div>
@@ -273,7 +273,7 @@ LI{
 
 .image-container1 {
   height: 60%; /* 上面图片容器占据60%的高度 */
-  background-image: url('../assets/img/index/dingzhiwufu.png');
+  background-image: url('../assets/img/index/dingzhifuwu.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

@@ -4,15 +4,20 @@
     <div class="box">
       <div class="news-body">
         <div class="body">
-          <div class="body-left"></div>
+          <div class="body-left">
+            <img src="../assets/img/index/dingzhifuwu.png" class="img-class">
+          </div>
           <div class="body-right">
             <div class="right1">
-              <div class="r1-1">
-              </div>
+              <!-- <div class="r1-1">
+              </div> -->
               <div class="r1-2">
-                <h2>汽车动力之旅</h2>
-                <p>适用年龄：6-15岁</p>
-                <p>涉及学科：机械工程、环境科学、计算机科学、设计与美学</p>
+                <!-- <h2>汽车动力之旅</h2> -->
+                <div class="title">汽车动力之旅</div>
+                <div class="wenzi">适用年龄：6-15岁</div>
+                <div class="wenzi">涉及学科：机械工程、环境科学、计算机科学、设计与美学</div>
+                <!-- <p>适用年龄：6-15岁</p>
+                <p>涉及学科：机械工程、环境科学、计算机科学、设计与美学</p> -->
               </div>
             </div>
             <div class="right2">
@@ -39,9 +44,7 @@
 <script lang="ts" setup>
 import AwHeader from '@/components/public/Header.vue'
 import AwFooter from '@/components/public/Footer.vue'
-import CheckboxAndDropdown from '@/components/CheckboxAndDropdown.vue'
 import mainStore from '@/store'
-import { onBeforeRouteLeave } from 'vue-router'
 import { computed, onBeforeMount, onMounted, onUnmounted, ref, reactive } from 'vue'
 
 
@@ -119,6 +122,24 @@ function scrollHandle () {
   margin: 0;
   padding: 0;
 }
+.wenzi{
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 10px;
+    color: rgb(121, 119, 119);
+}
+.title{
+    font-size: 40px;
+    margin-top: 40px;
+    margin-left: 10px;
+    font-weight: bold;
+}
+.img-class{
+  margin-top: 30px;
+  margin-left: 80px;
+  width: 530px;
+  height: 460px;
+}
 .news_header {
   background-color: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(10px);
@@ -136,25 +157,25 @@ function scrollHandle () {
   height: 600px;
   margin-top: 5%;
   margin-bottom: 5%;
-  background-color: lightblue;
+  background-color: rgb(240, 251, 255);
   border: 1px solid gray;
   display: flex;
 }
 
 .body{
   width: 100%;
-  margin:2%;
+  margin:10%;
   background-color: white;
   margin-bottom: 6%;
   border: 1px solid gray;
-  margin: 20px;
+  margin: 40px;
   display: flex;
 }
 
 .body-left{
-  width: 50%;
+  width: 600px;
   height: 80%;
-  background: url(../assets/img/index/dingzhifuwu.png) 100% no-repeat;
+  // background: url(../assets/img/index/dingzhifuwu.png) 90% no-repeat;
   background-size: cover;
   flex: 1;
 }
@@ -199,6 +220,7 @@ function scrollHandle () {
 .r1-2{
   width: 75%;
   height: 100%;
+  margin-left: 10px;
 }
 .right2{
   width: 100%;
