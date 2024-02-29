@@ -213,7 +213,7 @@ function scrollHandle () {
     margin-left: 10%;
     margin-top: 25px;
 }
-LI{
+li{
   color: gray;
     font-size: 12px;
     text-align: left;

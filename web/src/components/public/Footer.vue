@@ -9,7 +9,7 @@
                         <p class="text2">Xian Ke Xin Chuan</p>
                     </div>
                 </div>
-                <h2>© 2023-2024 Xanadu&nbsp;科技有限公司</h2>
+                <h2>© 2023-2024 XianKe&nbsp;创业团队</h2>
                 <h2>X公网安备 xxxxxxxxxxxxxx号 I ICP备xxxxxxxx号-1</h2>
             </div>
             <div class="about_us footer-content-column">

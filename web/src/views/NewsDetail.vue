@@ -24,13 +24,16 @@
               <h2>￥666起</h2>
             </div>
             <div class="right3">
-              <div class="r3-1">
+              <button class="custom-button1">立即购买</button>
+              <!-- <div class="r3-1">
                 <h2>立即购买</h2>
-              </div>
-              <div class="r3-2">
+              </div> -->
+              <button class="custom-button2">加入购物车</button>
+              <!-- <div class="r3-2">
                 <h2>加入购物车</h2>
-              </div>
+              </div> -->
               <div class="r3-3">
+                <img src="../assets/img/news/shoucang.jpg" class="img-class2">
               </div>
             </div>
           </div>
@@ -122,6 +125,44 @@ function scrollHandle () {
   margin: 0;
   padding: 0;
 }
+.img-class2{
+  width: 85px;
+  margin-top: 15px;
+}
+.custom-button1 {
+            background-color: #728196; /* 绿色 */
+            color: rgb(249, 247, 247); /* 文字颜色 */
+            padding: 15px 32px; /* 内边距 */
+            text-align: center; /* 文字居中 */
+            text-decoration: none; /* 去掉下划线 */
+            display: inline-block; /* 使其既有块级元素的特性，又有行内元素的特性 */
+            font-size: 25px; /* 文字大小 */
+            margin: 4px 2px; /* 外边距 */
+            cursor: pointer; /* 鼠标悬停时为指针形状 */
+            border: none; /* 去掉边框 */
+            border-radius: 8px; /* 边角圆润 */
+            box-shadow: 0 4px #d5d1d1; /* 阴影效果 */
+            transition-duration: 0.4s; /* 过渡动画 */
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+.custom-button2 {
+            background-color: #d2d1fb; /* 绿色 */
+            color: rgb(249, 247, 247); /* 文字颜色 */
+            padding: 15px 32px; /* 内边距 */
+            text-align: center; /* 文字居中 */
+            text-decoration: none; /* 去掉下划线 */
+            display: inline-block; /* 使其既有块级元素的特性，又有行内元素的特性 */
+            font-size: 25px; /* 文字大小 */
+            margin: 4px 2px; /* 外边距 */
+            cursor: pointer; /* 鼠标悬停时为指针形状 */
+            border: none; /* 去掉边框 */
+            border-radius: 8px; /* 边角圆润 */
+            box-shadow: 0 4px #d5d1d1; /* 阴影效果 */
+            transition-duration: 0.4s; /* 过渡动画 */
+            margin-top: 20px;
+            margin-left: 20px;
+        }
 .wenzi{
     font-size: 20px;
     margin-top: 20px;
@@ -274,7 +315,7 @@ function scrollHandle () {
   height: 70%;
   margin-left: 5%;
   margin-right: 10%;
-  background: url(../assets/img/news/shoucang.jpg) 1% no-repeat;
+  // background: url(../assets/img/news/shoucang.jpg) 1% no-repeat;
 }
 }
 
